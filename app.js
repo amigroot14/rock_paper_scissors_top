@@ -86,14 +86,13 @@ function gameLogic(userScore,computerScore){
 
 function playGame(gameState){
 
-  console.log("Welcome to Rock, paper Scissors!")  
-  console.log("You will be playing against the computer")  
-  console.log("First to 5 wins! All the best!")  
+  window.alert("Welcome to Rock, paper Scissors!")  
+  window.alert("You will be playing against the computer")  
+  window.alert("First to 5 wins! All the best!")  
   while(gameState===1){
-        console.clear()
         gameLogic(userScore,computerScore)
         gameState=parseInt(prompt("Enter 1 to play again and 0 to stop"))
-        
+        console.clear()
     }   
 }
 
