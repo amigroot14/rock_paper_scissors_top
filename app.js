@@ -2,6 +2,7 @@ const choices=["rock","paper","scissors"]
 
 let userScore=0
 let computerScore=0
+let gameState=1
 
 function computerPlays(){
     randomNum=Math.floor(Math.random()*3)
@@ -9,48 +10,89 @@ function computerPlays(){
 }
 
 function userPlays(){
-    userChoice=prompt("Enter your choice")
-    userChoice=userChoice.toLowerCase()
+    let userChoice='choice'
+    do{
+        userChoice=prompt("Enter your choice")
+        userChoice=userChoice.toLowerCase()
+    }
+    while(userChoice==='' && !userChoice)
     return userChoice
+
 }
 
-function game(userSelection,computerSelection){
+function gameLogic(userScore,computerScore){
 
-    if(userSelection===computerSelection){
-        console.log("Tie")
+    while(userScore<5 && computerScore<5){
+
+        userSelection=userPlays()
+        computerSelection=computerPlays()
+
+        if(userSelection===computerSelection){
+            console.log(`Computer chooses ${computerSelection}`)
+            console.log("Tie")
+         }
+        else if(computerSelection===choices[0]&&userSelection===choices[2]){
+            console.log(`Computer chooses ${computerSelection}`)
+            console.log("Computer Wins")
+            computerScore+=1
+            console.log(`Computer = ${computerScore}`)
+        }
+        else if(computerSelection===choices[1]&&userSelection===choices[0]){
+            console.log(`Computer chooses ${computerSelection}`)
+            console.log("Computer Wins")
+            computerScore+=1
+            console.log(`Computer = ${computerScore}`)
+        }
+        else if(computerSelection===choices[2]&&userSelection===choices[1]){
+            console.log(`Computer chooses ${computerSelection}`)
+            console.log("Computer Wins scissors")
+            computerScore+=1
+            console.log(`Computer = ${computerScore}`)
+        }
+        else if(computerSelection===choices[1]&&userSelection===choices[2]){
+            console.log(`Computer chooses ${computerSelection}`)
+            console.log("User Wins")
+            userScore++
+            console.log(`User = ${userScore}`)
+        }
+        else if(computerSelection===choices[0]&&userSelection===choices[1]){
+            console.log(`Computer chooses ${computerSelection}`)
+            console.log("User Wins paper")
+            userScore++
+            console.log(`User = ${userScore}`)
+        }
+        else if(computerSelection===choices[2]&&userSelection===choices[0]){
+            console.log(`Computer chooses ${computerSelection}`)
+            console.log("User Wins rock")
+            userScore++
+            console.log(`User = ${userScore}`)
+        }
+    
     }
-    else if(computerSelection===choices[0]&&userSelection===choices[2]){
-        console.log("Computer Wins")
-        computerScore+=1
-        console.log(`Computer = ${computerScore}`)
+
+    if(userScore===5){
+        window.alert("You win!")
     }
-    else if(computerSelection===choices[1]&&userSelection===choices[0]){
-        console.log("Computer Wins paper")
-        computerScore+=1
-        console.log(`Computer = ${computerScore}`)
+    else if (computerScore===5){
+        window.alert("Game over. You lose!")
     }
-    else if(computerSelection===choices[2]&&userSelection===choices[1]){
-        console.log("Computer Wins scissors")
-        computerScore+=1
-        console.log(`Computer = ${computerScore}`)
-    }
-    else if(computerSelection===choices[1]&&userSelection===choices[2]){
-        console.log("User Wins scissors")
-        userScore++
-        console.log(`User = ${userScore}`)
-    }
-    else if(computerSelection===choices[0]&&userSelection===choices[1]){
-        console.log("User Wins paper")
-        userScore++
-        console.log(`User = ${userScore}`)
-    }
-    else if(computerSelection===choices[2]&&userSelection===choices[0]){
-        console.log("User Wins rock")
-        userScore++
-        console.log(`User = ${userScore}`)
-    }
+
+    
+
 }
 
-for(i=1;i<=10;i++){
-    game(userPlays(),computerPlays())
+
+function playGame(gameState){
+
+  console.log("Welcome to Rock, paper Scissors!")  
+  console.log("You will be playing against the computer")  
+  console.log("First to 5 wins! All the best!")  
+  while(gameState===1){
+        console.clear()
+        gameLogic(userScore,computerScore)
+        gameState=parseInt(prompt("Enter 1 to play again and 0 to stop"))
+        
+    }   
 }
+
+playGame(gameState)
