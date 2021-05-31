@@ -4,6 +4,8 @@ let userScore=0
 let computerScore=0
 let gameState=1
 
+window.alert("This game is playable only through the console for now. Please press F12 to access your console")
+
 function computerPlays(){
     randomNum=Math.floor(Math.random()*3)
     return choices[randomNum]
@@ -45,7 +47,7 @@ function gameLogic(userScore,computerScore){
         }
         else if(computerSelection===choices[2]&&userSelection===choices[1]){
             console.log(`Computer chooses ${computerSelection}`)
-            console.log("Computer Wins scissors")
+            console.log("Computer Wins")
             computerScore+=1
             console.log(`Computer = ${computerScore}`)
         }
@@ -57,13 +59,13 @@ function gameLogic(userScore,computerScore){
         }
         else if(computerSelection===choices[0]&&userSelection===choices[1]){
             console.log(`Computer chooses ${computerSelection}`)
-            console.log("User Wins paper")
+            console.log("User Wins")
             userScore++
             console.log(`User = ${userScore}`)
         }
         else if(computerSelection===choices[2]&&userSelection===choices[0]){
             console.log(`Computer chooses ${computerSelection}`)
-            console.log("User Wins rock")
+            console.log("User Wins")
             userScore++
             console.log(`User = ${userScore}`)
         }
